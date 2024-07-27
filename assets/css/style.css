@@ -114,7 +114,6 @@ body {
     display: none; 
     background: rgba(0, 0, 0, 0.8);
     color: #f0f0f0;
-    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 24px;
@@ -123,11 +122,6 @@ body {
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-/* Show results page when needed */
-.quiz-result.show {
-    display: flex; 
 }
 
 /* Result Heading */
