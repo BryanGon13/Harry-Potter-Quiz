@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Link to Google Font (Noto Sans Korean)-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <!--Link to Google Font (Noto Sans Korean)-->
+    
+    <link rel="stylesheet" href="assets/css/style.css"> <!--Link to CSS-->
+    <link rel="icon" type="image/png" href="/assets/images/favicon-32x32.png"> <!--Favicon-->
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="quiz-container">
+        <!--Area in which logo will be displayed-->
+        <div class="heading-area">
+            <img src="/assets/images/Logo.png" alt="logo" class="logo">
+        </div>
+        <!--End of heading area-->
+
+        <!--Indicating number of question-->
+        <div class="question-indicator"></div>
+        <!--End of question indicator-->
+
+        <!--Area in which game will be played, includes: question, answers and progression-->
+        <div class="game-area">
+            <h2 class="question"></h2>
+        </div>
+        <!--End of game area-->
+
+
+        <!--Area where options will be presented to player, includes: New Game-->
+        <div class="options-area options"></div>
+        <!--End of options area-->
+
+        <button class="next-btn">Next</button> <!--Button to go to next question-->
+
+    </div>
+
+        <div class="quiz-result result-box">
+            <h1>Quiz Results</h1>
+            <table>
+                <tr>
+                    <th>Total Questions</th>
+                    <td class="total-questions">10</td>
+                </tr>
+                <tr>
+                    <th>Questions Attempted</th>
+                    <td class="questions-attempted">10</td>
+                </tr>
+                <tr>
+                    <th>Correct</th>
+                    <td class="correct-answers">0</td>
+                </tr>
+                <tr>
+                    <th>Incorrect</th>
+                    <td class="incorrect-answers">10</td>
+                </tr>
+                <tr>
+                    <th>Percentage</th>
+                    <td class="percentage">0.00%</td>
+                </tr>
+                <tr>
+                    <th>Total Score</th>
+                    <td class="total-score">0</td>
+                </tr>
+            </table>
+
+            <button class="retake-btn">Retake Quiz</button>
+        </div>
+        
+        
+
+    <script src="assets/js/script.js"></script> <!--Link to Javascript-->
+</body>
+</html>
