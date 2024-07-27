@@ -3,7 +3,7 @@ const quizData = [
     {
         question: "In which Harry Potter film does the endearing character Dobby face his untimely death?",
         options: ["Harry Potter and the Deathly Hallows: Part One", "Harry Potter and the Deathly Hallows: Part Two",
-         "Harry Potter and the Order of the Phoenix", "Harry Potter and the Prisoner of Azkaban"],
+            "Harry Potter and the Order of the Phoenix", "Harry Potter and the Prisoner of Azkaban"],
         correct: "Harry Potter and the Deathly Hallows: Part One",
     },
     {
@@ -64,52 +64,28 @@ const questionIndicator = document.querySelector(".quiz-container .question-indi
 
 let questionNumber = 0;
 let score = 0;
+let correctAnswers = 0;
 const MAX_QUESTIONS = 10;
 
 /* Shuffle Array Function */
 const shuffleArray = (array) => {
-    // Create a copy of the array and shuffle it
     return array.slice().sort(() => Math.random() - 0.5);
 };
 
 // Shuffle quiz data
 let shuffledQuizData = shuffleArray(quizData);
 
-/* Reset Local Storage */
-const resetLocalStorage = () => {
-    // Remove all stored answers from local storage
-    for (let i = 0; i < MAX_QUESTIONS; i++){
-        localStorage.removeItem(`userAnswer_${i}`);
-    }
-};
-
-// Reset local storage when quiz starts
-resetLocalStorage();
-
 /* Check User's Answer Function */
 const checkAnswer = (e) => {
     let userAnswer = e.target.textContent;
     if (userAnswer === shuffledQuizData[questionNumber].correct) {
         // Correct answer
-        score++;
+        correctAnswers++;
         e.target.classList.add("correct");
-        
-        // Store the correct answer count
-        let correctAnswers = localStorage.getItem("correctAnswers");
-        if (!correctAnswers) {
-            correctAnswers = [];
-        } else {
-            correctAnswers = JSON.parse(correctAnswers);
-        }
-        correctAnswers.push(questionNumber);
-        localStorage.setItem("correctAnswers", JSON.stringify(correctAnswers));
     } else {
         // Incorrect answer
         e.target.classList.add("incorrect");
     }
-
-    // Store the user's answer in local storage
-    localStorage.setItem(`userAnswer_${questionNumber}`, userAnswer);
 
     // Disable all options after an answer is selected
     let allOptions = document.querySelectorAll(".quiz-container .option");
@@ -117,7 +93,6 @@ const checkAnswer = (e) => {
         o.classList.add("disabled");
     });
 };
-
 
 /* Create and Display Question Function */
 const createQuestion = () => {
@@ -145,9 +120,9 @@ const createQuestion = () => {
 const retakeQuiz = () => {
     // Reset question number and score
     questionNumber = 0;
+    correctAnswers = 0;
     score = 0;
     shuffledQuizData = shuffleArray(quizData);
-    resetLocalStorage();
 
     // Recreate the first question
     createQuestion();
@@ -164,10 +139,9 @@ const displayQuizResult = () => {
     // Calculate results
     const totalQuestions = MAX_QUESTIONS;
     const attemptedQuestions = Math.min(MAX_QUESTIONS, questionNumber + 1);
-    const correctAnswers = localStorage.getItem("correctAnswers") ? JSON.parse(localStorage.getItem("correctAnswers")).length : 0;
     const incorrectAnswers = attemptedQuestions - correctAnswers;
     const percentage = ((correctAnswers / totalQuestions) * 100).toFixed(2);
-    const totalScore = score; // or use a different calculation if needed
+    const totalScore = score;
 
     // Create the result table
     const resultTable = document.createElement("table");
@@ -207,13 +181,14 @@ const displayQuizResult = () => {
     quizResult.appendChild(retakeBtn);
 };
 
-
-// Initialize the first question
-createQuestion();
+/* Initialize the first question */
+const initQuiz = () => {
+    createQuestion();
+};
 
 /* Display Next Question Function */
 const displayNextQuestion = () => {
-    if (questionNumber >= MAX_QUESTIONS - 1){
+    if (questionNumber >= MAX_QUESTIONS - 1) {
         // Display quiz results if all questions have been answered
         displayQuizResult();
         return;
@@ -226,3 +201,6 @@ const displayNextQuestion = () => {
 
 // Add event listener for the "Next" button
 nextButton.addEventListener("click", displayNextQuestion);
+
+// Start the quiz
+initQuiz();
