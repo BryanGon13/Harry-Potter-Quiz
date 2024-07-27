@@ -8,4 +8,6 @@ The website offers a fun and engaging way to take a break while potentially impr
 
 The live link can be found here - [Harry Potter Quiz](https://bryangon13.github.io/Harry-Potter-Quiz/)
 
+![Harry Potter Quiz Am I Responsive Image](./assets/images/responsive.png)
+
 ## Features
